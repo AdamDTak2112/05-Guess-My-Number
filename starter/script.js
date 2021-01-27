@@ -53,6 +53,6 @@ document.querySelector('.again').addEventListener('click',
         document.querySelector('.number').textContent = '?';
         document.querySelector('body').style.backgroundColor = '#222';
         document.querySelector('.number').style.width = '15rem';
-        document.querySelector('.guess').textContent = '';
+        document.querySelector('.guess').value = '';
     }
 );
