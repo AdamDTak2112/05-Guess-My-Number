@@ -16,11 +16,14 @@ document.querySelector('.check').addEventListener('click',
     function () {
         const guess = Number(document.querySelector('.guess').value);
         console.log(guess, typeof guess);
-
+        // When there is no input
         if (!guess) {
             document.querySelector('.message').textContent = 'No number!'
-        } else if (guess === secretNum) {
+        } else if (guess === secretNum) { //Guess is correct
             document.querySelector('.message').textContent = 'Correct number!';
+
+            document.querySelector('body').style.backgroundColor = '#60b347';
+            document.querySelector('.number').style.width = '30rem';
         } else if (guess > secretNum) {
             if (score > 1) {
                 score--;
