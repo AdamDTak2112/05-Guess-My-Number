@@ -8,9 +8,18 @@ document.querySelector('.score').textContent = 10;
 document.querySelector('.guess').value = 23;
 console.log(document.querySelector('.guess').value);
 */
-let secretNum = Math.trunc(Math.random() * 20) + 1;
+
+const generateNumber = function () {
+    return Math.trunc(Math.random() * 20) + 1;
+}
+
+let secretNum = generateNumber();
 let score = 20;
 let highScore = 0;
+
+const updateScore = function () {
+    document.querySelector('.score').textContent = score;
+}
 
 const displayMessage = function (message) {
     document.querySelector('.message').textContent = message;
@@ -26,6 +35,7 @@ const lostGame = function () {
 
 const wrongGuess = function (highOnTrue) {
     score--;
+    updateScore();
     if (score > 1) {
         const wrongMessage = `Too ${highOnTrue ? "High" : "Low"}!`;
         displayMessage(wrongMessage);
@@ -38,7 +48,6 @@ const wrongGuess = function (highOnTrue) {
 document.querySelector('.check').addEventListener('click',
     function () {
         const guess = Number(document.querySelector('.guess').value);
-        console.log(guess, typeof guess);
         // When there is no input
         if (!guess) {
             displayMessage('No number!');
@@ -51,8 +60,6 @@ document.querySelector('.check').addEventListener('click',
                 highScore = score;
                 document.querySelector('.highscore').textContent = highScore;
             }
-
-
         } else {
             wrongGuess(guess > secretNum);
         }
@@ -63,7 +70,7 @@ document.querySelector('.check').addEventListener('click',
 document.querySelector('.again').addEventListener('click',
     function () {
         score = 20;
-        secretNum = Math.trunc(Math.random() * 20) + 1;
+        secretNum = generateNumber();
         document.querySelector('.number').textContent = '?';
         document.querySelector('body').style.backgroundColor = '#222';
         document.querySelector('.number').style.width = '15rem';
