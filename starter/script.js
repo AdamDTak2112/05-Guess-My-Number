@@ -45,25 +45,11 @@ document.querySelector('.check').addEventListener('click',
                 document.querySelector('.highscore').textContent = highScore;
             }
 
-        } else if (guess > secretNum) {
-            if (score > 1) {
-                score--;
-                document.querySelector('.message').textContent = 'Too high!';
-                document.querySelector('.score').textContent = score;
-            } else {
-                document.querySelector('.message').textContent = 'You lost the game!';
-                document.querySelector('.score').textContent = 0;
-            }
+
         } else {
-            if (score > 1) {
-                score--;
-                document.querySelector('.message').textContent = 'Too low!';
-                document.querySelector('.score').textContent = score;
-            } else {
-                document.querySelector('.message').textContent = 'You lost the game!';
-                document.querySelector('.score').textContent = 0;
-            }
+            wrongGuess(guess > secretNum);
         }
+
     }
 );
 
