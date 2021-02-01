@@ -12,6 +12,11 @@ let secretNum = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highScore = 0;
 
+const lostGame = function () {
+    document.querySelector('.message').textContent = 'You lost the game!';
+    document.querySelector('.score').textContent = 0;
+}
+
 const wrongGuess = function (highOnTrue) {
     score--;
     if (score > 1) {
@@ -20,11 +25,6 @@ const wrongGuess = function (highOnTrue) {
     } else {
         lostGame();
     }
-}
-
-const lostGame = function () {
-    document.querySelector('.message').textContent = 'You lost the game!';
-    document.querySelector('.score').textContent = 0;
 }
 
 
