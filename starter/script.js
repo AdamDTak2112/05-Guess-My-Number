@@ -12,8 +12,15 @@ let secretNum = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highScore = 0;
 
+const displayMessage = function (message) {
+    document.querySelector('.message').textContent = message;
+}
+
+// Opted to create functions for both wrong guesses as well as a lost game state. This is different from the version that Jonas did in the course (he just did the code inline in the listener function), but I believe it looks cleaner if separated into their own functions.
+
 const lostGame = function () {
-    document.querySelector('.message').textContent = 'You lost the game!';
+    //document.querySelector('.message').textContent = 'You lost the game!';
+    displayMessage("You lost the game! :(");
     document.querySelector('.score').textContent = 0;
 }
 
@@ -21,7 +28,7 @@ const wrongGuess = function (highOnTrue) {
     score--;
     if (score > 1) {
         const wrongMessage = `Too ${highOnTrue ? "High" : "Low"}!`;
-        document.querySelector('.message').textContent = wrongMessage;
+        displayMessage(wrongMessage);
     } else {
         lostGame();
     }
@@ -34,9 +41,9 @@ document.querySelector('.check').addEventListener('click',
         console.log(guess, typeof guess);
         // When there is no input
         if (!guess) {
-            document.querySelector('.message').textContent = 'No number!'
+            displayMessage('No number!');
         } else if (guess === secretNum) { //Guess is correct
-            document.querySelector('.message').textContent = 'Correct number!';
+            displayMessage('Correct number!');
             document.querySelector('.number').textContent = secretNum;
             document.querySelector('body').style.backgroundColor = '#60b347';
             document.querySelector('.number').style.width = '30rem';
